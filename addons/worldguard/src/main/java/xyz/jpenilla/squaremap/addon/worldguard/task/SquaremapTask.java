@@ -11,20 +11,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import org.bukkit.Bukkit;
-<<<<<<< HEAD
-=======
-import org.bukkit.scheduler.BukkitRunnable;
->>>>>>> fc913d92079bc21ddd4ca4606eb75d44dd603e4f
 import org.checkerframework.checker.nullness.qual.Nullable;
 import xyz.jpenilla.squaremap.addon.common.config.ListMode;
 import xyz.jpenilla.squaremap.addon.worldguard.SquaremapWorldGuard;
 import xyz.jpenilla.squaremap.addon.worldguard.config.StyleSettings;
 import xyz.jpenilla.squaremap.addon.worldguard.config.WGWorldConfig;
 import xyz.jpenilla.squaremap.addon.worldguard.hook.WGHook;
-<<<<<<< HEAD
 import xyz.jpenilla.squaremap.addon.worldguard.task.schedulers.FoliaRunnable;
-=======
->>>>>>> fc913d92079bc21ddd4ca4606eb75d44dd603e4f
 import xyz.jpenilla.squaremap.api.BukkitAdapter;
 import xyz.jpenilla.squaremap.api.Key;
 import xyz.jpenilla.squaremap.api.Point;
@@ -33,11 +26,7 @@ import xyz.jpenilla.squaremap.api.WorldIdentifier;
 import xyz.jpenilla.squaremap.api.marker.Marker;
 import xyz.jpenilla.squaremap.api.marker.MarkerOptions;
 
-<<<<<<< HEAD
 public final class SquaremapTask extends FoliaRunnable {
-=======
-public final class SquaremapTask extends BukkitRunnable {
->>>>>>> fc913d92079bc21ddd4ca4606eb75d44dd603e4f
     private final WorldIdentifier world;
     private final SimpleLayerProvider provider;
     private final SquaremapWorldGuard plugin;
@@ -45,10 +34,7 @@ public final class SquaremapTask extends BukkitRunnable {
     private boolean stop;
 
     public SquaremapTask(SquaremapWorldGuard plugin, WorldIdentifier world, SimpleLayerProvider provider) {
-<<<<<<< HEAD
         super(Bukkit.getGlobalRegionScheduler());
-=======
->>>>>>> fc913d92079bc21ddd4ca4606eb75d44dd603e4f
         this.plugin = plugin;
         this.world = world;
         this.provider = provider;
@@ -142,8 +128,8 @@ public final class SquaremapTask extends BukkitRunnable {
 
         marker.markerOptions(options);
 
-        String markerid = "worldguard_region_" + region.getId().hashCode();
-        this.provider.addMarker(Key.of(markerid), marker);
+        String markerId = "worldguard_region_" + region.getId().hashCode();
+        this.provider.addMarker(Key.of(markerId), marker);
     }
 
     public void disable() {

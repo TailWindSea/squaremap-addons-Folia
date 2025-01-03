@@ -3,12 +3,13 @@ package xyz.jpenilla.squaremap.addon.essentialsx.task;
 import com.earth2me.essentials.Warps;
 import com.earth2me.essentials.commands.WarpNotFoundException;
 import net.ess3.api.InvalidWorldException;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
-import org.bukkit.scheduler.BukkitRunnable;
 import xyz.jpenilla.squaremap.addon.essentialsx.config.EssXWorldConfig;
 import xyz.jpenilla.squaremap.addon.essentialsx.hook.EssentialsHook;
 import xyz.jpenilla.squaremap.addon.essentialsx.hook.SquaremapHook;
+import xyz.jpenilla.squaremap.addon.essentialsx.task.schedulers.FoliaRunnable;
 import xyz.jpenilla.squaremap.api.BukkitAdapter;
 import xyz.jpenilla.squaremap.api.Key;
 import xyz.jpenilla.squaremap.api.MapWorld;
@@ -18,7 +19,7 @@ import xyz.jpenilla.squaremap.api.marker.Icon;
 import xyz.jpenilla.squaremap.api.marker.Marker;
 import xyz.jpenilla.squaremap.api.marker.MarkerOptions;
 
-public final class SquaremapTask extends BukkitRunnable {
+public final class SquaremapTask extends FoliaRunnable {
     private final MapWorld world;
     private final SimpleLayerProvider provider;
     private final EssXWorldConfig worldConfig;
@@ -26,6 +27,7 @@ public final class SquaremapTask extends BukkitRunnable {
     private boolean stop;
 
     public SquaremapTask(MapWorld world, EssXWorldConfig worldConfig, SimpleLayerProvider provider) {
+        super(Bukkit.getGlobalRegionScheduler());
         this.world = world;
         this.provider = provider;
         this.worldConfig = worldConfig;
@@ -64,8 +66,8 @@ public final class SquaremapTask extends BukkitRunnable {
                 .hoverTooltip(this.worldConfig.warpsTooltip.replace("{warp}", warpName))
         );
 
-        String markerid = "essentials_warp_" + warpName.hashCode();
-        this.provider.addMarker(Key.of(markerid), icon);
+        String markerId = "essentials_warp_" + warpName.hashCode();
+        this.provider.addMarker(Key.of(markerId), icon);
     }
 
     public void disable() {

@@ -47,7 +47,7 @@ public final class SquaremapHook {
                 .build();
             mapWorld.layerRegistry().register(Key.of("essentials_warps"), provider);
             SquaremapTask task = new SquaremapTask(mapWorld, worldConfig, provider);
-            task.runTaskTimerAsynchronously(this.plugin, 0, 20L * this.plugin.config().updateInterval);
+            task.runAtFixedRate(this.plugin, 0, 20L * this.plugin.config().updateInterval);
             this.tasks.put(mapWorld.identifier(), task);
         }
     }
